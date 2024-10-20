@@ -1,15 +1,20 @@
-CREATE TABLE vendors {
-    vendor_id INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR (50),
-    last_name VARCHAR (50),
-    date_of_birth VARCHAR (50),
-    date_added DATE CURRENT_TIMESTAMP
-}
+CREATE TABLE cars (
+    car_id INT AUTO_INCREMENT PRIMARY KEY,
+    brand VARCHAR(20),
+    model VARCHAR(20),
+    gen VARCHAR(20),
+    license_plate VARCHAR(20),
+    rental_status VARCHAR(20),
+    date_added DATE DEFAULT CURDATE()
+);
 
-CREATE TABLE stalls {
-    stall_id INT AUTO_INCREMENT PRIMARY KEY,
-    shop_name VARCHAR (50),
-    shop_category TEXT,
-    vendor_id INT,
-    date_added DATE CURRENT_TIMESTAMP
-}
+CREATE TABLE rentals (
+    rental_id INT AUTO_INCREMENT PRIMARY KEY,
+    car_id INT,
+    customer_name VARCHAR(50),
+    customer_licenseNo VARCHAR(20),
+    rental_date DATE,
+    return_date DATE, 
+    total_price DECIMAL(10, 2),
+    date_added DATE DEFAULT CURDATE() 
+);
