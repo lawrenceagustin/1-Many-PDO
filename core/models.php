@@ -51,7 +51,7 @@
 		}
 }
 
-function deleteWebDev($pdo, $car_id) {
+function deleteCars($pdo, $car_id) {
 	$deleteCars= "DELETE FROM cars WHERE car_id = ?";
 	$deleteStmt = $pdo->prepare($deleteCars);
 	$executeDeleteQuery = $deleteStmt->execute([$car_id]);
@@ -74,6 +74,7 @@ function getRentalsByCarID($pdo, $car_id) {
 	$sql = "SELECT 
 				rentals.rental_id AS rental_id,
 				rentals.car_id AS car_id,
+				cars.brand AS brand,	
 				cars.model AS model,
 				rentals.customer_name AS customer_name,
 				rentals.customer_licenseNo AS customer_licenseNo,
@@ -84,7 +85,7 @@ function getRentalsByCarID($pdo, $car_id) {
 			FROM rentals
 			JOIN cars ON rentals.car_id = cars.car_id
 			WHERE rentals.car_id = ? 
-			GROUP BY rentals.customer_name;
+			GROUP BY rentals.rental_id DESC;
 			";
 
 	$stmt = $pdo->prepare($sql);
@@ -144,17 +145,8 @@ function updateRentals($pdo, $customer_name, $customer_licenseNo, $return_date, 
 			WHERE rental_id = ?
 			";
 	$stmt = $pdo->prepare($sql);
-	$executeQuery = $stmt->execute([$customer_name, $customer_licenseNo, $return_date, $rental_date, $total_price, $rental_id_]);
+	$executeQuery = $stmt->execute([$customer_name, $customer_licenseNo, $return_date, $rental_date, $total_price, $rental_id]);
 
-	if ($executeQuery) {
-		return true;
-	}
-}
-
-function deleteProject($pdo, $project_id) {
-	$sql = "DELETE FROM projects WHERE project_id = ?";
-	$stmt = $pdo->prepare($sql);
-	$executeQuery = $stmt->execute([$project_id]);
 	if ($executeQuery) {
 		return true;
 	}

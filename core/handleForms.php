@@ -32,7 +32,7 @@ if (isset($_POST['editCarsBtn'])) {
 }
 
 if (isset($_POST['deleteCarBtn'])) {
-	$query = deleteWebDev($pdo, $_GET['car_id']);
+	$query = deleteCars($pdo, $_GET['car_id']);
 
 	if ($query) {
 		header("Location: ../index.php");
@@ -44,7 +44,7 @@ if (isset($_POST['deleteCarBtn'])) {
 }
 
 if (isset($_POST['editRentalsBtn'])) {
-	$query = updateRental($pdo, $_POST['customerName'], $_POST['customerLicenseNo'], $_POST['rentalDate'], $_POST['returnDate'], $_POST['totalPrice'], $_GET['rental_id']);
+	$query = updateRentals($pdo, $_POST['customerName'], $_POST['customerLicenseNo'], $_POST['rentalDate'], $_POST['returnDate'], $_POST['totalPrice'], $_GET['rental_id']);
 
 	if ($query) {
 		header("Location: ../viewprojects.php?car_id=" .$_GET['car_id']);
@@ -67,7 +67,7 @@ if (isset($_POST['insertNewRentalBtn'])) {
 }
 
 if (isset($_POST['deleteRentalBtn'])) {
-	$query = deleteProject($pdo, $_GET['rental_id']);
+	$query = deleteRental($pdo, $_GET['rental_id']);
 
 	if ($query) {
 		header("Location: ../viewprojects.php?car_id=" .$_GET['car_id']);
