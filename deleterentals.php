@@ -21,7 +21,7 @@
 
 		<div class="deleteBtn" style="float: right; margin-right: 10px;">
 
-			<form action="core/handleForms.php?rental_id=<?php echo $_GET['rental_id']; ?>&web_dev_id=<?php echo $_GET['web_dev_id']; ?>" method="POST">
+			<form action="core/handleForms.php?rental_id=<?php echo $_GET['rental_id']; ?>&car_id=<?php echo $_GET['car_id']; ?>" method="POST">
 				<input type="submit" name="deleteRentalBtn" value="Delete">
 			</form>			
 			

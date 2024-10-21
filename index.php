@@ -21,7 +21,7 @@
 			  <input type="text" name="model">
 		  </p>
 		  <p>
-			  <label for="year">Year</label> 
+			  <label for="gen">Year</label> 
 			  <input type="text" name="gen">
 		  </p>
 		  <p>

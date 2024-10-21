@@ -1,10 +1,10 @@
 <?php
 
     function insertCars($pdo, $brand, $model, $gen, $license_plate, $rental_status){
-        $sql = "INSERT INTO cars (brand, model, license_plate, rental_status) VALUES(?, ?, ?, ?)";
+        $sql = "INSERT INTO cars (brand, model, gen, license_plate, rental_status) VALUES(?, ?, ?, ?, ?)";
 
         $stmt = $pdo->prepare($sql);
-        $executeQuery = $stmt->execute([$brand, $model, $license_plate, $rental_status]);
+        $executeQuery = $stmt->execute([$brand, $model, $gen, $license_plate, $rental_status]);
 
         if ($executeQuery){
             return true;
@@ -85,7 +85,7 @@ function getRentalsByCarID($pdo, $car_id) {
 			FROM rentals
 			JOIN cars ON rentals.car_id = cars.car_id
 			WHERE rentals.car_id = ? 
-			GROUP BY rentals.rental_id DESC;
+			ORDER BY rentals.rental_id DESC;
 			";
 
 	$stmt = $pdo->prepare($sql);
@@ -119,14 +119,14 @@ function getRentalsByID($pdo, $rental_id) {
 	$sql = "SELECT 
 				rentals.rental_id AS rental_id,
 				rentals.customer_name AS customer_name,
-				rentals.customer_licenseNo AS customer_licenseNo,rentals.rental_date AS rental_date,
+				rentals.customer_licenseNo AS customer_licenseNo,
+				rentals.rental_date AS rental_date,
 				rentals.return_date AS return_date,
 				rentals.total_price AS total_price,
-				rentals.date_added AS date_added,
+				rentals.date_added AS date_added
 			FROM rentals
 			JOIN cars ON rentals.car_id = cars.car_id
-			WHERE rentals.rental_id  = ? 
-			GROUP BY rentals.customer_name";
+			WHERE rentals.rental_id  = ?";
 
 	$stmt = $pdo->prepare($sql);
 	$executeQuery = $stmt->execute([$rental_id]);

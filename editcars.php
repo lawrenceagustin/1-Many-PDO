@@ -32,7 +32,7 @@
 			<label for="rentalStatus">Rental Status</label> 
 			<select name="rental_status">
         <option value="available" <?php echo ($getCarsByID['rental_status'] === 'available') ? 'selected':''; ?>>Available</option>
-        <option value="rented" <?php echo ($getCarsByID['rental_status'] === 'rented') ? 'selected':''; ?>>Available</option>
+        <option value="rented" <?php echo ($getCarsByID['rental_status'] === 'rented') ? 'selected':''; ?>>Rented</option>
         <option value="rented" <?php echo ($getCarsByID['rental_status'] === 'notAvailable') ? 'selected':''; ?>>Not Available</option>
 			<input type="submit" name="editCarsBtn">
 		</p>

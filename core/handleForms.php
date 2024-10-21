@@ -44,7 +44,7 @@ if (isset($_POST['deleteCarBtn'])) {
 }
 
 if (isset($_POST['editRentalsBtn'])) {
-	$query = updateRentals($pdo, $_POST['customerName'], $_POST['customerLicenseNo'], $_POST['rentalDate'], $_POST['returnDate'], $_POST['totalPrice'], $_GET['rental_id']);
+	$query = updateRentals($pdo, $_POST['customerName'], $_POST['customerLicenseNo'], $_POST['rental_date'], $_POST['return_date'], $_POST['totalPrice'], $_GET['rental_id']);
 
 	if ($query) {
 		header("Location: ../viewprojects.php?car_id=" .$_GET['car_id']);
@@ -56,7 +56,7 @@ if (isset($_POST['editRentalsBtn'])) {
 }
 
 if (isset($_POST['insertNewRentalBtn'])) {
-	$query = insertRentals($pdo, $_POST['customer_name'], $_POST['licenseNo'], $_GET['car_id']);
+	$query = insertRentals($pdo, $_POST['customer_name'], $_POST['licenseNo'], $_GET['car_id'], $_POST['rental_date'], $_POST['return_date'], $_POST['total_price']);
 
 	if ($query) {
 		header("Location: ../viewprojects.php?car_id=" .$_GET['car_id']);
